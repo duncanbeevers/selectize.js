@@ -20,8 +20,8 @@ module.exports = function(grunt) {
 		'concat:less_theme_dependencies',
 		'concat:less_plugins',
 		'concat:js',
-		'less:uncompressed',
-		'clean_bootstrap2_css',
+		// 'less:uncompressed',
+		// 'clean_bootstrap2_css',
 		'replace',
 		'build_standalone',
 		'uglify',
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
 					variables: {
 						'version': '<%= pkg.version %>',
 						'js': '<%= grunt.file.read("dist/js/selectize.js").replace(/\\n/g, "\\n\\t") %>',
-						'css': '<%= grunt.file.read("dist/css/selectize.css") %>',
+						// 'css': '<%= grunt.file.read("dist/css/selectize.css") %>',
 					},
 				},
 				files: [
