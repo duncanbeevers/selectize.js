@@ -191,6 +191,10 @@ $.extend(Selectize.prototype, {
 			paste     : function() { return self.onPaste.apply(self, arguments); }
 		});
 
+		$input.parents().last().find('label[for="' + $input.attr('id') + '"]').on('click', function () {
+			self.onClick.apply(self, arguments);
+		});
+
 		$document.on('keydown' + eventNS, function(e) {
 			self.isCmdDown = e[IS_MAC ? 'metaKey' : 'ctrlKey'];
 			self.isCtrlDown = e[IS_MAC ? 'altKey' : 'ctrlKey'];
