@@ -1110,7 +1110,7 @@ $.extend(Selectize.prototype, {
 		}
 
 		// add create option
-		has_create_option = self.canCreate(query);
+		has_create_option = self.canCreate(query, triggerDropdown);
 		if (has_create_option) {
 			$dropdown_content.prepend(self.render('option_create', {input: query}));
 			$create = $($dropdown_content[0].childNodes[0]);
@@ -1538,7 +1538,7 @@ $.extend(Selectize.prototype, {
 			triggerDropdown = true;
 		}
 
-		if (!self.canCreate(input)) {
+		if (!self.canCreate(input, triggerDropdown, isDeactivating)) {
 			callback();
 			return false;
 		}
@@ -2094,7 +2094,7 @@ $.extend(Selectize.prototype, {
 		if (!self.settings.create) return false;
 		var filter = self.settings.createFilter;
 		return input.length
-			&& (typeof filter !== 'function' || filter.apply(self, [input]))
+			&& (typeof filter !== 'function' || filter.apply(self, arguments))
 			&& (typeof filter !== 'string' || new RegExp(filter).test(input))
 			&& (!(filter instanceof RegExp) || filter.test(input));
 	}
