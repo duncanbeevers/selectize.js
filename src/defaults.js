@@ -10,6 +10,7 @@ Selectize.defaults = {
 	diacritics: true,
 	create: false,
 	createOnBlur: false,
+	selectOnBlur: false,
 	createFilter: null,
 	highlight: true,
 	openOnFocus: true,
