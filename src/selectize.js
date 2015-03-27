@@ -613,27 +613,32 @@ $.extend(Selectize.prototype, {
 			return;
 		}
 
-		var deactivate = function() {
-			self.close();
-			self.setTextboxValue('');
-			self.setActiveItem(null);
-			self.setActiveOption(null);
-			self.setCaret(self.items.length);
-			self.refreshState();
+		setTimeout(function() {
+			var deactivate = function() {
+				self.close();
+				self.setTextboxValue('');
+				self.setActiveItem(null);
+				self.setActiveOption(null);
+				self.setCaret(self.items.length);
+				self.refreshState();
 
-			// IE11 bug: element still marked as active
-			(dest || document.body).focus();
+				// IE11 bug: element still marked as active
+				(dest || document.body).focus();
 
-			self.ignoreFocus = false;
-			self.trigger('blur');
-		};
+				self.ignoreFocus = false;
+				self.trigger('blur');
+			};
 
-		self.ignoreFocus = true;
-		if (self.settings.create && self.settings.createOnBlur) {
-			self.createItem(null, false, deactivate);
-		} else {
-			deactivate();
-		}
+			self.ignoreFocus = true;
+			if (self.settings.selectOnBlur && self.$activeOption && self.$activeOption.not('.create').length === 1) {
+				self.addItem(self.$activeOption.not('.create').data('value'));
+				deactivate();
+			} else if (self.settings.create && self.settings.createOnBlur) {
+				self.createItem(null, false, deactivate);
+			} else {
+				deactivate();
+			}
+		});
 	},
 
 	/**
