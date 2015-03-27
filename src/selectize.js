@@ -34,6 +34,7 @@ var Selectize = function($input, settings) {
 		ignoreBlur       : false,
 		ignoreHover      : false,
 		hasOptions       : false,
+		optionsCount     : 0,
 		currentResults   : null,
 		lastValue        : '',
 		caretPos         : 0,
@@ -1118,6 +1119,7 @@ $.extend(Selectize.prototype, {
 
 		// activate
 		self.hasOptions = results.items.length > 0 || has_create_option;
+		self.optionsCount = results.items.length + (has_create_option ? 1 : 0);
 		if (self.hasOptions) {
 			if (results.items.length > 0) {
 				$active_before = active_before && self.getOption(active_before);
