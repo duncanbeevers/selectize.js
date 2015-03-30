@@ -366,7 +366,7 @@ $.extend(Selectize.prototype, {
 			// event target is the input it should not be modified.
 			// otherwise, text selection within the input won't work.
 			if (e.target !== self.$control_input[0]) {
-				if (self.settings.mode === 'single') {
+				if (self.settings.mode === 'single' && e.target !== self.$control[0]) {
 					// toggle dropdown
 					self.isOpen ? self.close() : self.open();
 				} else if (!defaultPrevented) {
