@@ -134,6 +134,12 @@ $(function() {
 		<td valign="top"><code>'loading'</code></td>
 	</tr>
 	<tr>
+		<td valign="top"><code>manualInputWidth</code></td>
+		<td valign="top">If false, the input area for new items will scale with the text size. If true, styling of the input width is left up to the programmer.</td>
+		<td valign="top"><code>boolean</code></td>
+		<td valign="top"><code>false</code></td>
+	</tr>
+	<tr>
 		<td valign="top"><code>preload</code></td>
 		<td valign="top">If true, the "load" function will be called upon control initialization (with an empty search). Alternatively it can be set to "focus" to call the "load" function when control receives focus.</td>
 		<td valign="top"><code>boolean/string</code></td>
