@@ -123,6 +123,12 @@ $(function() {
 		<td valign="top"><code>false</code></td>
 	</tr>
 	<tr>
+		<td valign="top"><code>allowCreateEmpty</code></td>
+		<td valign="top">If true, Selectize will pass an empty search term "" value to canCreate, allowing a blank option to be created.</td>
+		<td valign="top"><code>boolean</code></td>
+		<td valign="top"><code>false</code></td>
+	</tr>
+	<tr>
 		<td valign="top"><code>scrollDuration</code></td>
 		<td valign="top">The animation duration (in milliseconds) of the scroll animation triggered when going [up] and [down] in the options dropdown.</td>
 		<td valign="top"><code>int</code></td>

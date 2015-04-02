@@ -506,11 +506,10 @@ $.extend(Selectize.prototype, {
 
 					// Default behaviour is to jump to the next field, we only want this
 					// if the current field doesn't accept any more entries
-					if (!self.isFull()) {
+					if (!(self.settings.allowCreateEmpty && self.settings.maxItems === 1) && !self.isFull()) {
 						e.preventDefault();
 					}
-				}
-				if (self.settings.create && self.createItem()) {
+				} else if (self.settings.create && self.createItem()) {
 					e.preventDefault();
 				}
 				return;
@@ -2109,7 +2108,7 @@ $.extend(Selectize.prototype, {
 		var self = this;
 		if (!self.settings.create) return false;
 		var filter = self.settings.createFilter;
-		return input.length
+		return (input.length || self.settings.allowCreateEmpty)
 			&& (typeof filter !== 'function' || filter.apply(self, [input]))
 			&& (typeof filter !== 'string' || new RegExp(filter).test(input))
 			&& (!(filter instanceof RegExp) || filter.test(input));
