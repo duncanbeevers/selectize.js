@@ -171,7 +171,9 @@ $.extend(Selectize.prototype, {
 		$dropdown.on('mouseenter', '[data-selectable]', function() { return self.onOptionHover.apply(self, arguments); });
 		$dropdown.on('mousedown click', '[data-selectable]', function() { return self.onOptionSelect.apply(self, arguments); });
 		watchChildEvent($control, 'mousedown', '*:not(input)', function() { return self.onItemSelect.apply(self, arguments); });
-		autoGrow($control_input);
+		if (!self.settings.manualInputWidth) {
+			autoGrow($control_input);
+		}
 
 		$control.on({
 			mousedown : function() { return self.onMouseDown.apply(self, arguments); },
@@ -895,18 +897,22 @@ $.extend(Selectize.prototype, {
 	 * retaining its focus.
 	 */
 	hideInput: function() {
-		var self = this;
-
-		self.setTextboxValue('');
-		self.$control_input.css({opacity: 0, position: 'absolute', left: self.rtl ? 10000 : -10000});
-		self.isInputHidden = true;
+		this.setTextboxValue('');
+		this.$control_input.css({opacity: 0});
+		if (!this.settings.manualInputWidth) {
+			this.$control_input.css({position: 'absolute', left: this.rtl ? 10000 : -10000});
+		}
+		this.isInputHidden = true;
 	},
 
 	/**
 	 * Restores input visibility.
 	 */
 	showInput: function() {
-		this.$control_input.css({opacity: 1, position: 'relative', left: 0});
+		this.$control_input.css({opacity: 1});
+		if (!this.settings.manualInputWidth) {
+			this.$control_input.css({position: 'relative', left: 0});
+		}
 		this.isInputHidden = false;
 	},
 
